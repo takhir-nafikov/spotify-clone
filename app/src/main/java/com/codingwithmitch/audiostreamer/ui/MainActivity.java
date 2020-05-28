@@ -8,24 +8,23 @@ import android.widget.ProgressBar;
 import com.codingwithmitch.audiostreamer.R;
 
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+  private static final String TAG = "MainActivity";
 
-    //UI Components
-
-
-    // Vars
+  //UI Components
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+  // Vars
 
 
-    }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+
+  }
 
 
 }

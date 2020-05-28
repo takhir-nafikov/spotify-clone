@@ -16,21 +16,21 @@ import com.codingwithmitch.audiostreamer.R;
 public class MediaControllerFragment extends Fragment {
 
 
-    private static final String TAG = "MediaControllerFragment";
+  private static final String TAG = "MediaControllerFragment";
 
 
-    // UI Components
+  // UI Components
 
 
-    // Vars
+  // Vars
 
 
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_media_controller, container, false);
-    }
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.fragment_media_controller, container, false);
+  }
 
 
 
