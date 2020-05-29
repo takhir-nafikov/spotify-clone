@@ -7,4 +7,8 @@ public interface IMainActivity {
   void hideProgressBar();
 
   void showProgressBar();
+
+  void onCategorySelected(String category);
+
+  void onArtistSelected(String category, Artist artist);
 }

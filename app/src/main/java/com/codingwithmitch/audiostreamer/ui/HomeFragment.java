@@ -101,6 +101,7 @@ public class HomeFragment extends Fragment implements HomeRecyclerAdapter.IHomeS
   @Override
   public void onCategorySelector(int position) {
     Log.d(TAG, "onCategorySelected: list item is clicked!");
+    mIMainActivity.onCategorySelected(mCategories.get(position));
   }
 }
 
