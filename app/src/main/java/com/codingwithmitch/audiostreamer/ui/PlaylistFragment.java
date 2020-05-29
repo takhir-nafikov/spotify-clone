@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+
 public class PlaylistFragment extends Fragment implements
     PlaylistRecyclerAdapter.IMediaSelector
 {
@@ -55,7 +56,9 @@ public class PlaylistFragment extends Fragment implements
 
   @Override
   public void onHiddenChanged(boolean hidden) {
-    mIMainActivity.setActionBarTitle(mSelectArtist.getTitle());
+    if(!hidden){
+      mIMainActivity.setActionBarTitle(mSelectArtist.getTitle());
+    }
   }
 
   @Override
@@ -141,6 +144,9 @@ public class PlaylistFragment extends Fragment implements
   private void updateDataSet(){
     mIMainActivity.hideProgressBar();
     mAdapter.notifyDataSetChanged();
+    if(mIMainActivity.getMyPreferenceManager().getLastPlayedArtist().equals(mSelectArtist.getArtist_id())){
+      getSelectedMediaItem(mIMainActivity.getMyPreferenceManager().getLastPlayedMedia());
+    }
   }
 
   private void initRecyclerView(View view){
@@ -162,7 +168,14 @@ public class PlaylistFragment extends Fragment implements
 
   @Override
   public void onMediaSelected(int position) {
-
+    mIMainActivity.getMyApplicationInstance().setMediaItems(mMediaList);
+    mSelectedMedia = mMediaList.get(position);
+    mAdapter.setSelectedIndex(position);
+    mIMainActivity.onMediaSelected(
+        mSelectArtist.getArtist_id(), // playlist_id = artist_id
+        mMediaList.get(position),
+        position);
+    saveLastPlayedSongProperties();
   }
 
   public void updateUI(MediaMetadataCompat mediaItem){
@@ -174,7 +187,11 @@ public class PlaylistFragment extends Fragment implements
   private void saveLastPlayedSongProperties(){
     // Save some properties for next time the app opens
     // NOTE: Normally you'd do this with a cache
-
+    mIMainActivity.getMyPreferenceManager().savePlaylistId(mSelectArtist.getArtist_id()); // playlist id is same as artist id
+    mIMainActivity.getMyPreferenceManager().saveLastPlayedArtist(mSelectArtist.getArtist_id());
+    mIMainActivity.getMyPreferenceManager().saveLastPlayedCategory(mSelectedCategory);
+    mIMainActivity.getMyPreferenceManager().saveLastPlayedArtistImage(mSelectArtist.getImage());
+    mIMainActivity.getMyPreferenceManager().saveLastPlayedMedia(mSelectedMedia.getDescription().getMediaId());
   }
 
   @Override
@@ -183,18 +200,3 @@ public class PlaylistFragment extends Fragment implements
     outState.putInt("selected_index", mAdapter.getSelectedIndex());
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

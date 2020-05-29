@@ -133,18 +133,3 @@ public class CategoryFragment extends Fragment implements CategoryRecyclerAdapte
     mIMainActivity = (IMainActivity) getActivity();
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
