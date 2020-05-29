@@ -31,7 +31,15 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     setContentView(R.layout.activity_main);
     mProgressBar = findViewById(R.id.progress_bar);
 
-    loadFragment(HomeFragment.newInstance(), true);
+    if (savedInstanceState == null) {
+      loadFragment(HomeFragment.newInstance(), true);
+    }
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt("active_fragments", MainActivityFragmentManager.getInstance().getFragments().size());
   }
 
   private void loadFragment(Fragment fragment, boolean lateralMovement) {
@@ -115,6 +123,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
   @Override
   public void onArtistSelected(String category, Artist artist) {
     loadFragment(PlaylistFragment.newInstance(category, artist), true);
+  }
+
+  @Override
+  public void setActionBarTitle(String title) {
+    getSupportActionBar().setTitle(title);
   }
 }
 

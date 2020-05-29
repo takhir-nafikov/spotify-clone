@@ -53,9 +53,9 @@ public class CategoryFragment extends Fragment implements CategoryRecyclerAdapte
 
   @Override
   public void onHiddenChanged(boolean hidden) {
-//    if(!hidden){
-//      mIMainActivity.setActionBarTitle(mSelectedCategory);
-//    }
+    if(!hidden){
+      mIMainActivity.setActionBarTitle(mSelectedCategory);
+    }
   }
 
   @Override
@@ -77,7 +77,7 @@ public class CategoryFragment extends Fragment implements CategoryRecyclerAdapte
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     initRecyclerView(view);
-    //mIMainActivity.setActionBarTitle(mSelectedCategory);
+    mIMainActivity.setActionBarTitle(mSelectedCategory);
   }
 
   private void retrieveArtists(){

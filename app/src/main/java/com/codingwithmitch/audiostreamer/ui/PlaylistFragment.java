@@ -55,7 +55,7 @@ public class PlaylistFragment extends Fragment implements
 
   @Override
   public void onHiddenChanged(boolean hidden) {
-
+    mIMainActivity.setActionBarTitle(mSelectArtist.getTitle());
   }
 
   @Override
@@ -77,6 +77,7 @@ public class PlaylistFragment extends Fragment implements
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     initRecyclerView(view);
+    mIMainActivity.setActionBarTitle(mSelectArtist.getTitle());
 
     if(savedInstanceState != null){
       mAdapter.setSelectedIndex(savedInstanceState.getInt("selected_index"));
